@@ -7,9 +7,15 @@
 const renderStories = (stories) => {
   stories.forEach((item) => {
     const markup = `
-    <div class='card'>
-    ${item.title}
-    </div>
+     <div class='card'>
+      <div class='container'>
+        <div class='stamp'>
+        </div>
+        ${item.title}
+      </div>
+      <div class='likes'>122</div>
+   </div>
+
     `;
     $("body").append(markup);
   });
