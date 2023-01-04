@@ -1,0 +1,65 @@
+body {
+  background-color: #c9d6df;
+}
+  .container {
+    display: flex;
+    gap: 10px;
+  }
+
+  .card {
+    position: relative;
+    width: 80%;
+    height: 200px;
+    margin: 20px auto;
+    background-color: white;
+    color: #52616b;
+    font-weight: bold;
+    font-size: 1.5rem;
+    padding: 20px;
+    cursor: pointer;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .approve-buttons {
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10px;
+    margin-top: auto;
+
+  }
+
+  .approve-buttons button {
+    background-color: #95a2ab;
+    color: white;
+    border-radius: 10px;
+    font-weight: bold;
+    border: none;
+    padding: 10px;
+    width: 125px;
+  }
+  .button-wrapper {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+  }
+
+  .contribution {
+    display: flex;
+    font-size: medium;
+    margin-top: auto;
+
+  }
+
+  .likes {
+    width: 35px;
+    height: auto;
+    font-size: 1rem;
+    background-color: #6bed4a;
+    text-align: center;
+    border-radius: 5px;
+    padding: 3px
+  }
