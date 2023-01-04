@@ -1,3 +1,47 @@
 body {
   background-color: #c9d6df;
 }
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #52616B;
+  height: 80px;
+  width: 100%;
+  position: fixed;
+}
+
+.logo {
+  padding-left: 48px;
+    font-family: "caveat brush";
+    color: #FFFFFF;
+    font-size: 40px;
+}
+
+.logout {
+  font-size: 25px;
+  color: #ffffff;
+  padding-right: 20px;
+}
+
+.avatar {
+  color: #FFFFFF;
+  font-size: 20px;
+
+}
+
+.profile-container {
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  border: solid 0.5px white;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  margin-right: 5px;
+}
+
+.user {
+  display: flex;
+}
