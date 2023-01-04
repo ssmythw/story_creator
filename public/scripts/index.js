@@ -1,6 +1,6 @@
 // Client facing scripts here
 
-//get the title of the book from the HTML object
+//addClickHandlers: get the title of the book from the HTML object
 //make a get request with the title in the URL
 //render the page on the server side
 
@@ -36,6 +36,8 @@ const renderStories = (stories) => {
   });
   addClickHandlers();
 };
+
+//getStories: make database call to get all the stories from the database
 
 const getStories = () => {
   $.ajax({
