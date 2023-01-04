@@ -50,17 +50,17 @@ const db = require("./db/connection");
 // Separate them into separate routes files (see above).
 
 app.get("/", (req, res) => {
-  res.render("index");
-});
-
-app.get("/pages/:title", (req, res) => {
-  console.log(req.params.title);
-});
-
-app.get("/api/stories", (req, res) => {
   db.query("SELECT * FROM stories").then((response) => {
-    res.send(response.rows);
+    res.render("index", { stories: response.rows });
   });
+});
+
+app.get("/stories/:title", (req, res) => {
+  db.query("SELECT * FROM stories WHERE title=$1", [req.params.title]).then(
+    (response) => {
+      res.render("story", { story: response.rows[0] });
+    }
+  );
 });
 
 app.listen(PORT, () => {
