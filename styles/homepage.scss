@@ -1,0 +1,58 @@
+.container {
+  display: flex;
+  gap: 10px;
+}
+
+.card {
+  position: relative;
+  width: 80%;
+  height: 200px;
+  margin: 20px auto;
+  background-color: white;
+  color: #52616b;
+  font-weight: bold;
+  font-size: 1.5rem;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.stamp {
+  flex: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  display: inline-block;
+  background-color: #52616b;
+}
+
+.main-buttons {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 auto;
+}
+
+.main-buttons button {
+  background-color: white;
+  color: #c9d6df;
+  border-radius: 10px;
+  font-weight: bold;
+  border: none;
+  padding: 10px;
+  width: 125px;
+}
+
+.likes {
+  position: absolute;
+  width: 25px;
+  height: auto;
+  font-size: 0.5rem;
+  background-color: #6bed4a;
+  text-align: center;
+  bottom: 0;
+  right: 0;
+  margin: 15px;
+  border-radius: 5px;
+  padding: 5px;
+}
