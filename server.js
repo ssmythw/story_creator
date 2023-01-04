@@ -4,6 +4,7 @@ require("dotenv").config();
 const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const morgan = require("morgan");
+const cookieParser = require("cookie-parser");
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -29,6 +30,7 @@ app.use(
   })
 );
 app.use(express.static("public"));
+app.use(cookieParser());
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
@@ -43,6 +45,7 @@ app.use("/api/users", userApiRoutes);
 app.use("/api/widgets", widgetApiRoutes);
 app.use("/users", usersRoutes);
 const db = require("./db/connection");
+
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -50,6 +53,11 @@ const db = require("./db/connection");
 // Separate them into separate routes files (see above).
 
 app.get("/", (req, res) => {
+  res.render("login");
+});
+
+app.get("/:id", (req, res) => {
+  res.cookie("user_id", req.params.id);
   db.query("SELECT * FROM stories").then((response) => {
     res.render("index", { stories: response.rows });
   });
