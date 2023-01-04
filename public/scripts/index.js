@@ -1,8 +1,24 @@
 // Client facing scripts here
 
-// make AJAX request to sever
-// server is going to get the data
-// return the data back here
+//get the title of the book from the HTML object
+//make a get request with the title in the URL
+//render the page on the server side
+
+const addClickHandlers = () => {
+  $(".card").click(function () {
+    const title = $(this).children().children(".bookTitle").html();
+    $.ajax({
+      method: "GET",
+      url: `/pages/${title}`,
+    }).done((response) => {
+      renderStories(response);
+    });
+  });
+};
+
+//renderStories: takes in stories as a parameter which is data from
+//from the database. For each story this function creates HTML markup
+//and appeneds it to the body of the document.
 
 const renderStories = (stories) => {
   stories.forEach((item) => {
@@ -11,14 +27,14 @@ const renderStories = (stories) => {
       <div class='container'>
         <div class='stamp'>
         </div>
-        ${item.title}
+        <span class='bookTitle'>${item.title}</span>
       </div>
       <div class='likes'>122</div>
    </div>
-
     `;
     $("body").append(markup);
   });
+  addClickHandlers();
 };
 
 const getStories = () => {

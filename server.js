@@ -53,6 +53,10 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+app.get("/pages/:title", (req, res) => {
+  console.log(req.params.title);
+});
+
 app.get("/api/stories", (req, res) => {
   db.query("SELECT * FROM stories").then((response) => {
     res.send(response.rows);
