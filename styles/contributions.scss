@@ -1,64 +1,25 @@
-body {
-  background-color: #c9d6df;
+.wrapper {
+  display: flex;
+  position: absolute;
+  right: 0;
+  gap: 10px;
+  top: 50%;
+  transform: translateY(-30%);
 }
 
-  .box {
-    position: relative;
-    width: 80%;
-    min-height: 200px;
-    margin: 20px auto;
-    justify-content: center;
-    background-color: white;
-    color: #52616b;
-    font-weight: bold;
-    font-size: 1.5rem;
-    padding: 20px;
-    cursor: pointer;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    font-family: 'Jaldi', sans-serif, 'Source Sans Pro', sans-serif;
-  }
+.approve-button {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-30%);
+}
 
-  .approve-buttons {
-    padding: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 10px;
-    margin-top: auto;
+.approve-buttons {
+  position: relative;
+}
 
-  }
-
-  .approve-buttons button {
-    background-color: #c9d6df;
-    color: white;
-    border-radius: 10px;
-    font-weight: bold;
-    border: none;
-    padding: 10px;
-    width: 125px;
-  }
-
-  .button-wrapper {
-    display: flex;
-    flex-grow: 1;
-    justify-content: center;
-  }
-
-  .contribution {
-    display: flex;
-    font-size: medium;
-    margin-top: auto;
-  }
-
-  .counter {
-    display: inline;
-    width: 35px;
-    height: auto;
-    font-size: 1rem;
-    background-color: #6bed4a !important;
-    text-align: center;
-    border-radius: 5px;
-    padding: 3px
-  }
+.contribution {
+  font-weight: normal;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}

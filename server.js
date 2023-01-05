@@ -56,6 +56,10 @@ app.get("/", (req, res) => {
   res.render("login");
 });
 
+app.get("/contributions/:id", (req, res) => {
+  res.render("contributions");
+});
+
 app.get("/create", (req, res) => {
   console.log("here");
   res.render("create");

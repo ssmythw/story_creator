@@ -13,6 +13,7 @@
   font-size: 1.5rem;
   padding: 20px;
   cursor: pointer;
+  position: relative;
 }
 
 .stamp {
@@ -42,16 +43,10 @@
   width: 125px;
 }
 
-.likes {
-  width: 25px;
-  height: auto;
-  font-size: 0.5rem;
-  background-color: #6bed4a;
-  text-align: center;
-  bottom: 0;
+.wrapper {
+  display: flex;
+  position: absolute;
   right: 0;
-  margin-left: 105em;
-  margin-top: 90px;
-  border-radius: 5px;
-  padding: 5px;
+  bottom: 0;
+  gap: 10px;
 }
