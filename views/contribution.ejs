@@ -11,13 +11,22 @@
     <link rel="stylesheet" href="/styles/main.css" />
     <link rel="stylesheet" href="/styles/layout.css" />
     <link rel="stylesheet" href="/styles/homepage.css" />
-    <link rel="stylesheet" href="/styles/contributions.scss" />
+    <link rel="stylesheet" href="/styles/contributions.css" />
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+  <!-- Font Family -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Jaldi&family=Source+Sans+Pro:wght@300;600&display=swap"
+    rel="stylesheet"
+  />
+
 </head>
+<%- include('partials/_navbar') %>
 <body>
-  <div class='card'>
+  <div class='box'>
     <div class='container'>
       <div class='user-icon'>
         <i class="fa-sharp fa-solid fa-user"></i>
@@ -26,12 +35,11 @@
     </div>
     <div class='contribution'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus tempore reprehenderit exercitationem ea a, non consequuntur voluptatem molestiae adipisci deleniti dolorem eaque in necessitatibus dolorum? Ex ut animi est doloremque.</div>
     <div class="approve-buttons">
-    <div class="button-wrapper"><button>Approve</button></div>
+    <span class="button-wrapper"><button>Approve</button></span>
     <i class="fa-regular fa-thumbs-up"></i>
-    <div class='likes'>144</div>
-  </div>
+    <span class='counter'>144</span>
 
- </div>
+  </div>
 
 </body>
 </html>

@@ -56,6 +56,10 @@ app.get("/", (req, res) => {
   res.render("login");
 });
 
+app.get("/contributions", (req, res) => {
+  res.render("contribution");
+});
+
 app.get("/:id", (req, res) => {
   res.cookie("user_id", req.params.id);
   db.query("SELECT * FROM stories").then((response) => {

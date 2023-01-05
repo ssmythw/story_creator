@@ -10,7 +10,9 @@ nav {
   background-color: #52616b;
   height: 80px;
   width: 100%;
-  position: fixed;
+  position: sticky;
+  top: 0;
+
 }
 
 footer {
