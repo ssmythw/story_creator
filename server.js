@@ -53,14 +53,13 @@ const db = require("./db/connection");
 // Separate them into separate routes files (see above).
 
 app.get("/", (req, res) => {
-  res.render("login");
+  res.render("contribution");
 });
 
-app.get("/:id", (req, res) => {
+app.get("/:id", async (req, res) => {
   res.cookie("user_id", req.params.id);
-  db.query("SELECT * FROM stories").then((response) => {
-    res.render("index", { stories: response.rows });
-  });
+  const response = await db.query("SELECT * FROM stories");
+  res.render("index", { stories: response.rows });
 });
 
 app.get("/stories/:title", async (req, res) => {

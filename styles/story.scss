@@ -29,3 +29,21 @@
   display: inline-block;
   background-color: #52616b;
 }
+
+.story-buttons {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 auto;
+}
+
+.story-buttons button {
+  background-color: #c9d6df;
+  color: white;
+  border-radius: 10px;
+  font-weight: bold;
+  border: none;
+  padding: 10px;
+  width: 125px;
+}

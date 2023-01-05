@@ -24,12 +24,13 @@
         <div class="bookTitle"><%= story.title %></div>
       </div>
       <div class="content"><%= story.content %></div>
+      <% if(role.user_role === 'contributor' || story.status === 'contribute'){
+      %>
+      <div class="story-buttons">
+        <button>write</button>
+      </div>
+      <% } %>
     </div>
-    <% if(role.user_role === 'contributor' || story.status === 'contribute'){ %>
-    <div class="main-buttons">
-      <button>write</button>
-    </div>
-    <% } %>
     <footer>
       <span class="footer-back">Back</span>
       <span class="footer-contributions">View Contributions</span>
