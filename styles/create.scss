@@ -57,5 +57,8 @@ textarea {
 }
 
 .error-text {
-  
+  display: flex;
+  justify-content: center;
+  font-family: "Jaldi", sans-serif;
+  color: red;
 }

@@ -26,11 +26,11 @@ $(document).ready(function() {
   });
 
 
-
+  $('.error-text').slideUp().text('');
   //ERROR HANDLING FOR TITLE TEXTAREA
   $('.new-story-form').submit(function(event) {
     // event.preventDefault(); ONLY FOR AJAX
-    const form = $(this);
+
 
 
     console.log('Hello from Title');
