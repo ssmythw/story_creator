@@ -56,6 +56,11 @@ app.get("/", (req, res) => {
   res.render("login");
 });
 
+//temp for wes
+app.get("/create", (req, res) => {
+  res.render("create");
+});
+
 app.get("/:id", (req, res) => {
   res.cookie("user_id", req.params.id);
   db.query("SELECT * FROM stories").then((response) => {
