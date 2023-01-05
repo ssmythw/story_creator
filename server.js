@@ -63,12 +63,20 @@ app.get("/:id", (req, res) => {
   });
 });
 
-app.get("/stories/:title", (req, res) => {
-  db.query("SELECT * FROM stories WHERE title=$1", [req.params.title]).then(
-    (response) => {
-      res.render("story", { story: response.rows[0] });
-    }
+app.get("/stories/:title", async (req, res) => {
+  const story = await db.query("SELECT * FROM stories WHERE title=$1", [
+    req.params.title,
+  ]);
+
+  const role = await db.query(
+    "SELECT user_role FROM user_stories WHERE user_id=$1 AND story_id=$2",
+    [req.cookies["user_id"], story.rows[0].id]
   );
+
+  res.render("story", {
+    story: story.rows[0],
+    role: role.rows[0],
+  });
 });
 
 app.listen(PORT, () => {

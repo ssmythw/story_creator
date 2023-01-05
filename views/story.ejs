@@ -25,6 +25,11 @@
       </div>
       <div class="content"><%= story.content %></div>
     </div>
+    <% if(role.user_role === 'contributor' || story.status === 'contribute'){ %>
+    <div class="main-buttons">
+      <button>write</button>
+    </div>
+    <% } %>
     <footer>
       <span class="footer-back">Back</span>
       <span class="footer-contributions">View Contributions</span>
