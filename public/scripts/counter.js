@@ -15,4 +15,13 @@ $(document).ready(function() {
       counter.removeClass("error");
     }
   });
+
+
+  $("#reset").on("click", function() {
+    console.log('Tommy two');
+    const counter = $(this).parent().parent().find(".counter");
+    counter.text(200);
+  });
+
 });
+
