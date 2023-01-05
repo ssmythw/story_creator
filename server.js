@@ -60,6 +60,11 @@ app.get("/contributions", (req, res) => {
   res.render("contribution");
 });
 
+//temp for wes to view page in browser
+app.get("/create", (req, res) => {
+  res.render("create");
+});
+
 app.get("/:id", (req, res) => {
   res.cookie("user_id", req.params.id);
   db.query("SELECT * FROM stories").then((response) => {
