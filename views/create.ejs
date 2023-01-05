@@ -1,68 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Font Family -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Jaldi&family=Source+Sans+Pro:wght@300;600&display=swap"
-      rel="stylesheet"
-    />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
 
-    <!-- CSS Styling -->
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" />
-    <link rel="stylesheet" href="/styles/main.css" />
-    <link rel="stylesheet" href="/styles/layout.css" />
-    <link rel="stylesheet" href="/styles/homepage.css" />
-    <link rel="stylesheet" href="/styles/story.css" />
-    <link rel="stylesheet" href="/styles/create.css" />
+  <!-- Font Family -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Jaldi&family=Source+Sans+Pro:wght@300;600&display=swap"
+    rel="stylesheet" />
 
-    <title>Document</title>
-  </head>
-
-  <!-- scripts -->
-  <script src="/vendor/jquery-3.0.0.js"></script>
-  <script defer src="/scripts/counter.js"></script>
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script> -->
-  </head>
+  <!-- CSS Styling -->
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" />
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="stylesheet" href="/styles/layout.css" />
+  <link rel="stylesheet" href="/styles/homepage.css" />
+  <link rel="stylesheet" href="/styles/story.css" />
+  <link rel="stylesheet" href="/styles/create.css" />
 
   <title>Document</title>
 </head>
 
-<body>
-<%- include('partials/_navbar') %>
+<!-- scripts -->
+<script src="/vendor/jquery-3.0.0.js"></script>
+<script defer src="/scripts/counter.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script> -->
+</head>
 
-  <section class="new-story">
-    <div class="new-story-header">
-      <span>Create a New Story!</span>
-    </div>
-    <div class="new-story-container">
-      <form action="" method="POST">
-        <textarea name="text" id="story-title" placeholder="Story Title"></textarea>
-        <textarea name="text" id="story-content" placeholder="Start writing..."></textarea>
-        <div class="new-story-footer">
-          <output name="counter" class="counter" for="story-text">200</output>
-          <div class="main-buttons">
-            <button type="submit" class="fa-solid fa-check"></button>
-            <button id="reset" type="reset" class="fa-solid fa-trash"></button>
-          </div>
+<title>Document</title>
+</head>
+
+<body>
+  <%- include('partials/_navbar') %>
+
+    <section class="new-story">
+      <div class="new-story-header">
+        <span>Create a New Story!</span>
+      </div>
+      <div class="new-story-container">
+        <form method="POST" class="new-story-form">
+          <textarea name="text" id="story-title" placeholder="Story Title"></textarea>
+          <textarea name="text" id="story-content" placeholder="Start writing..."></textarea>
+          <div class="new-story-footer">
+            <output name="counter" class="counter" for="story-text">200</output>
+            <div class="main-buttons">
+              <button type="submit" class="fa-solid fa-check"></button>
+              <button id="reset" type="reset" class="fa-solid fa-trash"></button>
+            </div>
         </form>
       </div>
     </section>
 
+    <div class="error-text" />
 
 
 
-  </body>
+</body>
+
 </html>
