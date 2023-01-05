@@ -22,7 +22,10 @@ $(document).ready(function() {
   $("#reset").on("click", function() {
     // console.log('Tommy can you hear me?');
     const counter = $(this).parent().parent().find(".counter");
+    const errorText = $(this).parent().parent().find(".error-text");
     counter.text(200);
+    errorText.hide(300);
+
   });
 
 
