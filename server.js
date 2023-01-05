@@ -56,8 +56,13 @@ app.get("/", (req, res) => {
   res.render("login");
 });
 
-app.get("/contributions/:id", (req, res) => {
-  res.render("contributions");
+app.get("/contributions/:id", async (req, res) => {
+  const storyId = req.params.id;
+  const contributions = await db.query(
+    "SELECT * FROM contributions WHERE story_id=$1",
+    [storyId]
+  );
+  res.render("contributions", { contributions });
 });
 
 app.get("/create", (req, res) => {
@@ -98,9 +103,15 @@ app.get("/stories/:title", async (req, res) => {
     [req.cookies["user_id"], story.rows[0].id]
   );
 
+  const contributions = await db.query(
+    "SELECT * FROM contributions WHERE story_id=$1",
+    [story.rows[0].id]
+  );
+
   res.render("story", {
     story: story.rows[0],
     role: role.rows[0],
+    contributions,
   });
 });
 
