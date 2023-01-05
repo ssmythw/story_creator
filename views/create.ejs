@@ -1,62 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <!-- Font Family -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Jaldi&family=Source+Sans+Pro:wght@300;600&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Font Family -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Jaldi&family=Source+Sans+Pro:wght@300;600&display=swap"
-    rel="stylesheet" />
+    <!-- CSS Styling -->
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" />
+    <link rel="stylesheet" href="/styles/main.css" />
+    <link rel="stylesheet" href="/styles/layout.css" />
+    <link rel="stylesheet" href="/styles/homepage.css" />
+    <link rel="stylesheet" href="/styles/story.css" />
+    <link rel="stylesheet" href="/styles/create.css" />
 
-  <!-- CSS Styling -->
-  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
-  <link rel="stylesheet" href="/vendor/border-box.css" />
-  <link rel="stylesheet" href="/styles/main.css" />
-  <link rel="stylesheet" href="/styles/layout.css" />
-  <link rel="stylesheet" href="/styles/homepage.css" />
-  <link rel="stylesheet" href="/styles/story.css" />
-  <link rel="stylesheet" href="/styles/create.css" />
+    <title>Document</title>
+  </head>
 
+  <body>
+    <%- include('partials/_navbar') %>
 
-  <title>Document</title>
-</head>
-
-<body>
-<%- include('partials/_navbar') %>
-
-  <!-- <div class="main-buttons">
+    <!-- <div class="main-buttons">
     <button>create</button>
   </div> -->
 
-  <section class="new-story">
-    <div class="new-story-header">
-      <span>Create a New Story!</span>
-    </div>
-    <div class="new-story-container">
-      <form action="" method="POST">
-        <textarea name="text" id="story-title" placeholder="Story Title"></textarea>
-        <textarea name="text" id="story-content" placeholder="Start writing..."></textarea>
-        <div class="new-story-footer">
-          <output name="counter" class="counter" for="story-text">200</output>
-          <div class="main-buttons">
-            <button type="submit" class="fa-solid fa-check"></button>
-            <button type="reset" class="fa-solid fa-trash"></button>
+    <section class="new-story">
+      <div class="new-story-header">
+        <span>Create a New Story!</span>
+      </div>
+      <div class="new-story-container">
+        <form action="/create" method="POST">
+          <textarea
+            name="title"
+            id="story-title"
+            placeholder="Story Title"
+          ></textarea>
+          <textarea
+            name="content"
+            id="story-content"
+            placeholder="Start writing..."
+          ></textarea>
+          <div class="new-story-footer">
+            <output name="counter" class="counter" for="story-text">200</output>
+            <div class="main-buttons">
+              <button type="submit" class="fa-solid fa-check"></button>
+              <button type="reset" class="fa-solid fa-trash"></button>
+            </div>
           </div>
-        </div>
-
-      </form>
-    </div>
-
-  </section>
-
-</body>
-
+        </form>
+      </div>
+    </section>
+  </body>
 </html>

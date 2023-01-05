@@ -6,8 +6,19 @@
 -- );
 
 INSERT INTO user_stories (user_id, story_id, user_role)
-VALUES (1, 2, 'creator');
-
+VALUES (1, 1, 'creator');
 
 INSERT INTO user_stories (user_id, story_id, user_role)
-VALUES (2, 2, 'contributor');
+VALUES (2, 1, 'contributor');
+
+INSERT INTO user_stories (user_id, story_id, user_role)
+VALUES (2, 2, 'creator');
+
+INSERT INTO user_stories (user_id, story_id, user_role)
+VALUES (3, 2, 'contributor');
+
+INSERT INTO user_stories (user_id, story_id, user_role)
+VALUES (3, 3, 'creator');
+
+INSERT INTO user_stories (user_id, story_id, user_role)
+VALUES (4, 3, 'contributor');

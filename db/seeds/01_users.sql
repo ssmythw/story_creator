@@ -8,3 +8,6 @@ VALUES ('Bob', 'Smith', 'bobsmith77', 'bobsmith@gmail.com', '7fhtu473');
 
 INSERT INTO users (first_name, last_name, username, email, password) 
 VALUES ('Rick', 'Morty', 'rickmorty32', 'rickmorty@gmail.com', '7fhtu473');
+
+INSERT INTO users (first_name, last_name, username, email, password) 
+VALUES ('Robery', 'Jones', 'robertjones65', 'robertjones@gmail.com', '7fhtu473');

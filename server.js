@@ -53,13 +53,35 @@ const db = require("./db/connection");
 // Separate them into separate routes files (see above).
 
 app.get("/", (req, res) => {
-  res.render("contribution");
+  res.render("login");
+});
+
+app.get("/create", (req, res) => {
+  console.log("here");
+  res.render("create");
+});
+
+app.post("/create", async (req, res) => {
+  const title = req.body.title;
+  const content = req.body.content;
+  const userId = req.cookies["user_id"];
+  const newEntry = await db.query(
+    "INSERT INTO stories(title, content, status) VALUES($1, $2, $3) returning id",
+    [title, content, "contribute"]
+  );
+
+  await db.query(
+    "INSERT INTO user_stories(user_id, story_id, user_role) VALUES($1, $2, $3)",
+    [userId, newEntry.rows[0].id, "creator"]
+  );
+  const stories = await db.query("SELECT * FROM stories");
+  res.render("index", { stories: stories.rows });
 });
 
 app.get("/:id", async (req, res) => {
   res.cookie("user_id", req.params.id);
-  const response = await db.query("SELECT * FROM stories");
-  res.render("index", { stories: response.rows });
+  const stories = await db.query("SELECT * FROM stories");
+  res.render("index", { stories: stories.rows });
 });
 
 app.get("/stories/:title", async (req, res) => {
