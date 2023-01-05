@@ -22,12 +22,13 @@
     />
   </head>
   <body>
-    <div class="card">
-      <div class="container">
-        <div class="user-icon">
-          <i class="fa-sharp fa-solid fa-user"></i>
-        </div>
-        <span class="contributor">username</span>
+    <% for (let contribution of contributions) { %>
+      <div class="card">
+        <div class="container">
+          <div class="user-icon">
+            <i class="fa-sharp fa-solid fa-user"></i>
+          </div>
+          <span class="contributor"><%=contribution.username%></span>
       </div>
       <div class="contribution">
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus tempore
@@ -43,5 +44,6 @@
         </div>
       </div>
     </div>
+    <% } %>
   </body>
 </html>
