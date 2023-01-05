@@ -59,10 +59,11 @@ app.get("/", (req, res) => {
 app.get("/contributions/:id", async (req, res) => {
   const storyId = req.params.id;
   const contributions = await db.query(
-    "SELECT * FROM contributions WHERE story_id=$1",
+    "SELECT * FROM contributions JOIN users ON contributions.user_id=users.id WHERE story_id=$1",
     [storyId]
   );
-  res.render("contributions", { contributions });
+  console.log('contribution', contributions.rows)
+  res.render("contributions", { contributions: contributions.rows,  });
 });
 
 app.get("/create", (req, res) => {
