@@ -43,19 +43,29 @@
       <% } %> <% if(role.user_role === 'contributor' && story.status ===
       'contribute'){ %>
       <div class="story-buttons">
-        <button>write</button>
+        <button
+          class="write-button"
+          id="<%= story.id %>"
+          title="<%= story.title %>"
+        >
+          write
+        </button>
       </div>
-      <% }else if(role.user_role === 'creator' && story.status ===
-      'contribute'){ %>
+      <% }else if(role.user_role === 'creator' && story.status === 'read'){ %>
       <div class="story-buttons">
-        <button>write</button>
+        <button
+          class="write-button"
+          id="<%= story.id %>"
+          title="<%= story.title %>"
+        >
+          write
+        </button>
         <button>publish</button>
       </div>
       <% } else { %>
       <div></div>
       <% } %>
     </div>
-
     <footer>
       <span class="footer-back">Back</span>
       <a href="/contributions/<%= story.id %>">

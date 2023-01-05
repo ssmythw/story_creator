@@ -62,8 +62,18 @@ app.get("/contributions/:id", async (req, res) => {
     "SELECT * FROM contributions JOIN users ON contributions.user_id=users.id WHERE story_id=$1",
     [storyId]
   );
-  console.log('contribution', contributions.rows)
-  res.render("contributions", { contributions: contributions.rows,  });
+  res.render("contributions", { contributions: contributions.rows });
+});
+
+app.post("/contributions/:id", async (req, res) => {
+  const contribution = req.body.contribution;
+  const storyId = req.params.id;
+  const userId = req.cookies["user_id"];
+  db.query(
+    "INSERT INTO contributions(user_id, story_id, content, status, likes) VALUES ($1, $2, $3, $4, $5)",
+    [userId, storyId, contribution, "pending", 0]
+  );
+  res.redirect(`/stories/${req.body.title}`);
 });
 
 app.get("/create", (req, res) => {
@@ -113,8 +123,6 @@ app.get("/stories/:title", async (req, res) => {
     "SELECT username FROM users JOIN contributions ON users.id=user_id WHERE contributions.story_id=$1",
     [story.rows[0].id]
   );
-
-  console.log(story.rows[0]);
 
   res.render("story", {
     story: story.rows[0],
