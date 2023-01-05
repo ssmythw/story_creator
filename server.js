@@ -108,10 +108,18 @@ app.get("/stories/:title", async (req, res) => {
     [story.rows[0].id]
   );
 
+  const usernames = await db.query(
+    "SELECT username FROM users JOIN contributions ON users.id=user_id WHERE contributions.story_id=$1",
+    [story.rows[0].id]
+  );
+
+  console.log(contributions.rows);
+
   res.render("story", {
     story: story.rows[0],
     role: role.rows[0],
-    contributions,
+    contributions: contributions.rows,
+    usernames: usernames.rows,
   });
 });
 
