@@ -124,6 +124,12 @@ app.get("/stories/:title", async (req, res) => {
     [story.rows[0].id]
   );
 
+  if (role.rowCount === 0) {
+    console.log("here");
+    role.rows[0] = {};
+    role.rows[0].user_role = "neither";
+  }
+
   res.render("story", {
     story: story.rows[0],
     role: role.rows[0],

@@ -67,7 +67,14 @@
       <% } %>
     </div>
     <footer>
-      <span class="footer-back">Back</span>
+      <form>
+        <input
+          class="footer-back"
+          type="button"
+          value="Back"
+          onclick="history.back()"
+        />
+      </form>
       <a href="/contributions/<%= story.id %>">
         <span class="footer-contributions">View Contributions</span></a
       >

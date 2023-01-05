@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/styles/layout.css" />
     <link rel="stylesheet" href="/styles/homepage.css" />
     <link rel="stylesheet" href="/styles/contributions.css" />
+    <link rel="stylesheet" href="/styles/story.css" />
 
     <link
       rel="stylesheet"
@@ -30,12 +31,7 @@
         </div>
         <span class="contributor"><%=contribution.username%></span>
       </div>
-      <div class="contribution">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus tempore
-        reprehenderit exercitationem ea a, non consequuntur voluptatem molestiae
-        adipisci deleniti dolorem eaque in necessitatibus dolorum? Ex ut animi
-        est doloremque.
-      </div>
+      <div class="contribution"><%=contribution.content%></div>
       <div class="approve-buttons">
         <button class="approve-button">Approve</button>
         <div class="wrapper">
@@ -46,7 +42,14 @@
     </div>
     <% } %>
     <footer>
-      <a href="" class="footer-back">Back</a>
+      <form>
+        <input
+          class="footer-back"
+          type="button"
+          value="Back"
+          onclick="history.back()"
+        />
+      </form>
     </footer>
   </body>
 </html>
