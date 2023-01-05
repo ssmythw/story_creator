@@ -31,35 +31,31 @@
     <title>Document</title>
   </head>
 
-  <body>
-    <%- include('partials/_navbar') %>
+  <!-- scripts -->
+  <script src="/vendor/jquery-3.0.0.js"></script>
+  <script defer src="/scripts/counter.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script> -->
+  </head>
 
-    <!-- <div class="main-buttons">
-    <button>create</button>
-  </div> -->
+  <title>Document</title>
+</head>
 
-    <section class="new-story">
-      <div class="new-story-header">
-        <span>Create a New Story!</span>
-      </div>
-      <div class="new-story-container">
-        <form action="/create" method="POST">
-          <textarea
-            name="title"
-            id="story-title"
-            placeholder="Story Title"
-          ></textarea>
-          <textarea
-            name="content"
-            id="story-content"
-            placeholder="Start writing..."
-          ></textarea>
-          <div class="new-story-footer">
-            <output name="counter" class="counter" for="story-text">200</output>
-            <div class="main-buttons">
-              <button type="submit" class="fa-solid fa-check"></button>
-              <button type="reset" class="fa-solid fa-trash"></button>
-            </div>
+<body>
+<%- include('partials/_navbar') %>
+
+  <section class="new-story">
+    <div class="new-story-header">
+      <span>Create a New Story!</span>
+    </div>
+    <div class="new-story-container">
+      <form action="" method="POST">
+        <textarea name="text" id="story-title" placeholder="Story Title"></textarea>
+        <textarea name="text" id="story-content" placeholder="Start writing..."></textarea>
+        <div class="new-story-footer">
+          <output name="counter" class="counter" for="story-text">200</output>
+          <div class="main-buttons">
+            <button type="submit" class="fa-solid fa-check"></button>
+            <button type="reset" class="fa-solid fa-trash"></button>
           </div>
         </form>
       </div>
