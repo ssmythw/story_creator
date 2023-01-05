@@ -26,6 +26,7 @@
 </head>
 <%- include('partials/_navbar') %>
 <body>
+  <% for (let contribution of contributions) { %>
   <div class='box'>
     <div class='container'>
       <div class='user-icon'>
@@ -38,8 +39,10 @@
     <span class="button-wrapper"><button>Approve</button></span>
     <i class="fa-regular fa-thumbs-up"></i>
     <span class='counter'>144</span>
-
   </div>
+</div>
+    <% } %>
+
 
 </body>
 </html>

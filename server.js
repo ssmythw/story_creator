@@ -45,6 +45,7 @@ app.use("/api/users", userApiRoutes);
 app.use("/api/widgets", widgetApiRoutes);
 app.use("/users", usersRoutes);
 const db = require("./db/connection");
+const { response } = require("express");
 
 // Note: mount other resources here, using the same pattern above
 
@@ -56,8 +57,10 @@ app.get("/", (req, res) => {
   res.render("login");
 });
 
-app.get("/contributions", (req, res) => {
-  res.render("contribution");
+app.get("/contributions",  async (req, res) => {
+  const contribution = await db.query("SELECT * FROM contributions");
+
+  res.render('contribution', { contributions: contribution.rows });
 });
 
 //temp for wes to view page in browser
