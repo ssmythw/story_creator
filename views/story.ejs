@@ -40,6 +40,19 @@
         <div class="contributor"><%= usernames[i].username %></div>
       </div>
       <div class="content"><%= contributions[i].content %></div>
+      <% } %> <% if(role.user_role === 'contributor' && story.status ===
+      'contribute'){ %>
+      <div class="story-buttons">
+        <button>write</button>
+      </div>
+      <% }else if(role.user_role === 'creator' && story.status ===
+      'contribute'){ %>
+      <div class="story-buttons">
+        <button>write</button>
+        <button>publish</button>
+      </div>
+      <% } else { %>
+      <div></div>
       <% } %>
     </div>
 

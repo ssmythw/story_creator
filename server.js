@@ -113,7 +113,7 @@ app.get("/stories/:title", async (req, res) => {
     [story.rows[0].id]
   );
 
-  console.log(contributions.rows);
+  console.log(story.rows[0]);
 
   res.render("story", {
     story: story.rows[0],
