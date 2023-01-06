@@ -6,6 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Plot</title>
 
+    <!-- Font Family -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Jaldi&family=Source+Sans+Pro:wght@300;600&display=swap"
+      rel="stylesheet" />
+
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
     <link rel="stylesheet" href="/vendor/border-box.css" />
     <link rel="stylesheet" href="/styles/main.css" />
@@ -21,8 +28,15 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+
+    <!-- scripts -->
+    <script src="/vendor/jquery-3.0.0.js"></script>
+    <script defer src="/scripts/upvote.js"></script>
+
+
   </head>
   <body>
+    <%- include('partials/_navbar') %>
     <% for (let contribution of contributions) { %>
     <div class="contributions-card">
       <div class="container">
@@ -35,7 +49,7 @@
       <div class="approve-buttons">
         <button class="approve-button">Approve</button>
         <div class="wrapper">
-          <i class="fa-regular fa-thumbs-up"></i>
+          <i id="upvote" class="fa-regular fa-thumbs-up"></i>
           <div class="">144</div>
         </div>
       </div>

@@ -8,6 +8,10 @@
 }
 
 .approve-button {
+  font-family: 'Jaldi', sans-serif;
+  color: #52616b;
+  border-radius: 10px;
+  border: none;
   position: absolute;
   left: 0;
   top: 50%;
@@ -34,4 +38,12 @@
   cursor: pointer;
   position: relative;
   padding: 30px;
+}
+
+.wrapper i:hover {
+  color: rgb(141, 237, 141);
+}
+
+.approve-button:hover {
+  background-color: rgb(141, 237, 141);
 }
