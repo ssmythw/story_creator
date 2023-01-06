@@ -58,9 +58,11 @@ app.get("/", (req, res) => {
 
 app.get("/contributions/:id", async (req, res) => {
   const storyId = req.params.id;
+  const userId = req.cookies["user_id"];
+
   const contributions = await db.query(
-    "SELECT * FROM contributions JOIN users ON contributions.user_id=users.id WHERE story_id=$1",
-    [storyId]
+    "SELECT contributions.id as contribution_id, contributions.*  , users.*, (select id from contributions_likes where  contribution_id = contributions.id and user_id = $1  ) as haslike FROM contributions JOIN users ON contributions.user_id=users.id  WHERE story_id=$2",
+    [userId, storyId]
   );
   res.render("contributions", { contributions: contributions.rows });
 });
@@ -137,6 +139,63 @@ app.get("/stories/:title", async (req, res) => {
     usernames: usernames.rows,
   });
 });
+
+app.post("/stories/:id", async (req, res) => {
+  const completed = req.body.completed
+  const id = req.params.id
+  if (completed) {
+    const role = await db.query(
+      `UPDATE stories
+       SET status = 'completed'
+      WHERE id=${id}`
+    );
+  }
+  res.status(201).send('Sucessfully published!');
+})
+
+app.post("/contributions/likes/:id", async (req, res) => {
+
+  const id = req.params.id
+  const userId = req.cookies["user_id"];
+  let count = parseInt(req.body.count, 0);
+  count++;
+
+  console.log("Contribution: " + id + "userId: " + userId + "count: " + count);
+
+  await db.query(
+    `UPDATE contributions
+    SET likes = $1
+    WHERE id = $2`, [count, id]
+  );
+
+  await db.query(
+    `INSERT INTO contributions_likes (user_id, contribution_id)
+    VALUES ($1, $2)`, [userId, id]
+  )
+
+  res.status(201).send('Like success');
+})
+
+app.post("/contributions/dislikes/:id", async (req, res) => {
+  const id = req.params.id
+  const userId = req.cookies["user_id"];
+  let count = parseInt(req.body.count, 0);
+  count--;
+
+  console.log("Contribution: " + id + "userId: " + userId + "count: " + count);
+
+  await db.query(
+    `UPDATE contributions
+    SET likes = $1
+    WHERE id = $2`, [count, id]
+  );
+
+  await db.query(
+    `delete from contributions_likes where user_id = $1 and contribution_id = $2`, [userId, id]
+  )
+
+  res.status(201).send('Dislike success');
+})
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

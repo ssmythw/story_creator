@@ -22,9 +22,26 @@ $(".write-button").click(function () {
       </div>
   </form>
   `;
-  $(".story-buttons").empty();
-  $(".story-buttons").append(markup);
+  
+  $("#content-button").empty();
+  $("#content-button").append(markup);
   $(".revert-contribution").click(function () {
     window.location.reload();
   });
 });
+
+$(".publish").click(function () {
+  const id = $(this).attr("id");
+  const url = `/stories/` + id
+  $.post(url,
+  {
+  completed: true,
+  },
+  function(data, status) {
+    alert(data);
+    window.location.reload();
+  });
+})
+
+
+
