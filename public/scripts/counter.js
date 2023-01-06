@@ -61,9 +61,9 @@ $(document).ready(function() {
       return $('.error-text').text('Story appears to be empty!').slideDown(600);
 
     }
-    if (text.length > 35) {
+    if (text.length > 200) {
       event.preventDefault()
-       return $('.error-text').text('Story cannot exceed 35 characters!').slideDown(600);
+       return $('.error-text').text('Story cannot exceed 200 characters!').slideDown(600);
 
     }
 
