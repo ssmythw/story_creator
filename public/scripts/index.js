@@ -28,3 +28,19 @@ $(".write-button").click(function () {
     window.location.reload();
   });
 });
+
+$(".publish").click(function () {
+  const id = $(this).attr("id");
+  const url = `/stories/` + id
+  $.post(url,
+  {
+  completed: true,
+  },
+  function(data, status){
+    alert(data);
+    window.location.reload();
+  });
+})
+
+
+

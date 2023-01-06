@@ -24,6 +24,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <title>Document</title>
   </head>
+  <%- include('partials/_navbar') %>
   <body>
     <div class="card-display">
       <div class="container">
@@ -33,14 +34,18 @@
       <div class="content"><%= story.content %></div>
 
       <% for(let i = 0; i < contributions.length; i++) {%>
+        <% if(story.status !== 'completed'){%>
       <div class="container">
         <div class="user-icon">
           <i class="fa-sharp fa-solid fa-user"></i>
         </div>
         <div class="contributor"><%= usernames[i].username %></div>
+        <div class="contributor"><%= story.status %></div>
+        <div class="contributor"><%= role.user_role %></div>
       </div>
+    <% } %>
       <div class="content"><%= contributions[i].content %></div>
-      <% } %> <% if(role.user_role === 'contributor' && story.status ===
+      <% } %> <% if( story.status ===
       'contribute'){ %>
       <div class="story-buttons">
         <button
@@ -51,19 +56,11 @@
           write
         </button>
       </div>
-      <% }else if(role.user_role === 'creator' && story.status === 'read'){ %>
+      <% } if (role.user_role === 'creator' && story.status === 'contribute'){ %>
       <div class="story-buttons">
-        <button
-          class="write-button"
-          id="<%= story.id %>"
-          title="<%= story.title %>"
-        >
-          write
-        </button>
-        <button>publish</button>
+
+        <button class="publish" id="<%= story.id %>">publish</button>
       </div>
-      <% } else { %>
-      <div></div>
       <% } %>
     </div>
     <footer>

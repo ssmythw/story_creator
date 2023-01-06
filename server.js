@@ -138,6 +138,20 @@ app.get("/stories/:title", async (req, res) => {
   });
 });
 
+app.post("/stories/:id", async (req, res) => {
+  const completed = req.body.completed
+  const id = req.params.id
+  console.log("id:",  id)
+  if (completed) {
+    const role = await db.query(
+      `UPDATE stories
+       SET status = 'completed'
+      WHERE id=${id}`
+    );
+    }
+    res.status(201).send('Sucessfully published!');
+})
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
