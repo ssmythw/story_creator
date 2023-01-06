@@ -22,8 +22,9 @@ $(".write-button").click(function () {
       </div>
   </form>
   `;
-  $(".story-buttons").empty();
-  $(".story-buttons").append(markup);
+  
+  $("#content-button").empty();
+  $("#content-button").append(markup);
   $(".revert-contribution").click(function () {
     window.location.reload();
   });
@@ -36,7 +37,7 @@ $(".publish").click(function () {
   {
   completed: true,
   },
-  function(data, status){
+  function(data, status) {
     alert(data);
     window.location.reload();
   });

@@ -5,6 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Font Family -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Jaldi&family=Source+Sans+Pro:wght@300;600&display=swap"
+      rel="stylesheet" />
+
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
     <link rel="stylesheet" href="/vendor/border-box.css" />
     <link rel="stylesheet" href="/styles/main.css" />
@@ -40,12 +47,13 @@
           <i class="fa-sharp fa-solid fa-user"></i>
         </div>
         <div class="contributor"><%= usernames[i].username %></div>
-        <div class="contributor"><%= story.status %></div>
-        <div class="contributor"><%= role.user_role %></div>
       </div>
     <% } %>
       <div class="content"><%= contributions[i].content %></div>
-      <% } %> <% if( story.status ===
+
+      <% } %>
+      <div class="story-buttons" id="content-button">
+      <% if( story.status ===
       'contribute'){ %>
       <div class="story-buttons">
         <button
@@ -62,6 +70,7 @@
         <button class="publish" id="<%= story.id %>">publish</button>
       </div>
       <% } %>
+    </div>
     </div>
     <footer>
       <form>

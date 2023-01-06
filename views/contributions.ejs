@@ -37,7 +37,6 @@
   </head>
   <%- include('partials/_navbar') %>
   <body>
-    <%- include('partials/_navbar') %>
     <% for (let contribution of contributions) { %>
     <div class="contributions-card">
       <div class="container">
@@ -50,8 +49,12 @@
       <div class="approve-buttons">
         <button class="approve-button">Approve</button>
         <div class="wrapper">
-          <i id="upvote" class="fa-regular fa-thumbs-up"></i>
-          <div class="">144</div>
+          <% if(contribution.haslike) { %>
+            <i id="upvote" contributionId="<%=contribution.contribution_id %>" contributionCount="<%=contribution.likes %>" class="fa-regular fa-thumbs-up dislike upvote"></i>
+          <% } else { %>
+            <i id="upvote" contributionId="<%=contribution.contribution_id %>" contributionCount="<%=contribution.likes %>" class="fa-regular fa-thumbs-up upvote"></i>
+          <% } %>
+          <div  class="contentCount"><%=contribution.likes ?? 0 %></div>
         </div>
       </div>
     </div>
