@@ -32,29 +32,14 @@ app.use(
 app.use(express.static("public"));
 app.use(cookieParser());
 
-// Separated Routes for each Resource
-// Note: Feel free to replace the example routes below with your own
-
-const userApiRoutes = require("./routes/users-api");
-const widgetApiRoutes = require("./routes/widgets-api");
 const usersRoutes = require("./routes/users");
 const createRoutes = require("./routes/create");
 const storyRoutes = require("./routes/story");
-// Mount all resource routes
-// Note: Feel free to replace the example routes below with your own
-// Note: Endpoints that return data (eg. JSON) usually start with `/api`
-app.use("/api/users", userApiRoutes);
-app.use("/api/widgets", widgetApiRoutes);
+
 app.use("/users", usersRoutes);
 app.use("/create", createRoutes);
 app.use("/contributions", contributionsRoutes);
 app.use("/stories", storyRoutes);
-
-// Note: mount other resources here, using the same pattern above
-
-// Home page
-// Warning: avoid creating more routes in this file!
-// Separate them into separate routes files (see above).
 
 app.get("/", (req, res) => {
   res.render("login");
