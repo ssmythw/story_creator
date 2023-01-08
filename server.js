@@ -45,6 +45,25 @@ app.use("/api/users", userApiRoutes);
 app.use("/api/widgets", widgetApiRoutes);
 app.use("/users", usersRoutes);
 const db = require("./db/connection");
+const {
+  getContributionId,
+  insertContribution,
+  getContributionByStoryId,
+  getUsernameForContribution,
+  updateContribution,
+  deleteContribution,
+  insertContributionLikes,
+} = require("./db/queries/contributions");
+const {
+  insertStory,
+  getStories,
+  getStoryByTitleId,
+  updateStories,
+} = require("./db/queries/stories");
+const {
+  insertUserStory,
+  getUserStoryByUserIdAndStoryId,
+} = require("./db/queries/user_stories");
 
 // Note: mount other resources here, using the same pattern above
 
@@ -60,10 +79,7 @@ app.get("/contributions/:id", async (req, res) => {
   const storyId = req.params.id;
   const userId = req.cookies["user_id"];
 
-  const contributions = await db.query(
-    "SELECT contributions.id as contribution_id, contributions.*  , users.*, (select id from contributions_likes where  contribution_id = contributions.id and user_id = $1  ) as haslike FROM contributions JOIN users ON contributions.user_id=users.id  WHERE story_id=$2",
-    [userId, storyId]
-  );
+  const contributions = await getContributionId(storyId, userId);
   res.render("contributions", { contributions: contributions.rows });
 });
 
@@ -71,15 +87,13 @@ app.post("/contributions/:id", async (req, res) => {
   const contribution = req.body.contribution;
   const storyId = req.params.id;
   const userId = req.cookies["user_id"];
-  db.query(
-    "INSERT INTO contributions(user_id, story_id, content, status, likes) VALUES ($1, $2, $3, $4, $5)",
-    [userId, storyId, contribution, "pending", 0]
-  );
+
+  await insertContribution(contribution, storyId, userId);
+
   res.redirect(`/stories/${req.body.title}`);
 });
 
 app.get("/create", (req, res) => {
-  console.log("here");
   res.render("create");
 });
 
@@ -87,47 +101,31 @@ app.post("/create", async (req, res) => {
   const title = req.body.title;
   const content = req.body.content;
   const userId = req.cookies["user_id"];
-  const newEntry = await db.query(
-    "INSERT INTO stories(title, content, status) VALUES($1, $2, $3) returning id",
-    [title, content, "contribute"]
-  );
 
-  await db.query(
-    "INSERT INTO user_stories(user_id, story_id, user_role) VALUES($1, $2, $3)",
-    [userId, newEntry.rows[0].id, "creator"]
-  );
-  const stories = await db.query("SELECT * FROM stories");
+  const newEntry = await insertStory(title, content);
+  await insertUserStory(userId, newEntry);
+  const stories = await getStories();
+
   res.render("index", { stories: stories.rows });
 });
 
 app.get("/:id", async (req, res) => {
   res.cookie("user_id", req.params.id);
-  const stories = await db.query("SELECT * FROM stories");
+  const stories = await getStories();
+
   res.render("index", { stories: stories.rows });
 });
 
 app.get("/stories/:title", async (req, res) => {
-  const story = await db.query("SELECT * FROM stories WHERE title=$1", [
-    req.params.title,
-  ]);
+  const title = req.params.title;
+  const userId = req.cookies["user_id"];
 
-  const role = await db.query(
-    "SELECT user_role FROM user_stories WHERE user_id=$1 AND story_id=$2",
-    [req.cookies["user_id"], story.rows[0].id]
-  );
-
-  const contributions = await db.query(
-    "SELECT * FROM contributions WHERE story_id=$1",
-    [story.rows[0].id]
-  );
-
-  const usernames = await db.query(
-    "SELECT username FROM users JOIN contributions ON users.id=user_id WHERE contributions.story_id=$1",
-    [story.rows[0].id]
-  );
+  const story = await getStoryByTitleId(title);
+  const role = await getUserStoryByUserIdAndStoryId(userId, story);
+  const contributions = await getContributionByStoryId(story);
+  const usernames = await getUsernameForContribution(story);
 
   if (role.rowCount === 0) {
-    console.log("here");
     role.rows[0] = {};
     role.rows[0].user_role = "neither";
   }
@@ -141,61 +139,41 @@ app.get("/stories/:title", async (req, res) => {
 });
 
 app.post("/stories/:id", async (req, res) => {
-  const completed = req.body.completed
-  const id = req.params.id
+  const completed = req.body.completed;
+  const id = req.params.id;
   if (completed) {
-    const role = await db.query(
-      `UPDATE stories
-       SET status = 'completed'
-      WHERE id=${id}`
-    );
+    await updateStories(id);
   }
-  res.status(201).send('Sucessfully published!');
-})
+  res.status(201).send("Sucessfully published!");
+});
 
 app.post("/contributions/likes/:id", async (req, res) => {
-
-  const id = req.params.id
+  const id = req.params.id;
   const userId = req.cookies["user_id"];
   let count = parseInt(req.body.count, 0);
   count++;
 
   console.log("Contribution: " + id + "userId: " + userId + "count: " + count);
 
-  await db.query(
-    `UPDATE contributions
-    SET likes = $1
-    WHERE id = $2`, [count, id]
-  );
+  await updateContribution(count, id);
+  await insertContributionLikes(userId, id);
 
-  await db.query(
-    `INSERT INTO contributions_likes (user_id, contribution_id)
-    VALUES ($1, $2)`, [userId, id]
-  )
-
-  res.status(201).send('Like success');
-})
+  res.status(201).send("Like success");
+});
 
 app.post("/contributions/dislikes/:id", async (req, res) => {
-  const id = req.params.id
+  const id = req.params.id;
   const userId = req.cookies["user_id"];
   let count = parseInt(req.body.count, 0);
   count--;
 
   console.log("Contribution: " + id + "userId: " + userId + "count: " + count);
 
-  await db.query(
-    `UPDATE contributions
-    SET likes = $1
-    WHERE id = $2`, [count, id]
-  );
+  await updateContribution(count, id);
+  await deleteContribution(userId, id);
 
-  await db.query(
-    `delete from contributions_likes where user_id = $1 and contribution_id = $2`, [userId, id]
-  )
-
-  res.status(201).send('Dislike success');
-})
+  res.status(201).send("Dislike success");
+});
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
