@@ -1,5 +1,5 @@
-const { insertStory, getStories } = require("./db/queries/stories");
-const { insertUserStory } = require("./db/queries/user_stories");
+const { insertStory, getStories } = require("../db/queries/stories");
+const { insertUserStory } = require("../db/queries/user_stories");
 
 const express = require("express");
 const router = express.Router();

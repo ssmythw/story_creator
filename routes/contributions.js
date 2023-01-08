@@ -4,7 +4,7 @@ const {
   updateContribution,
   deleteContribution,
   insertContributionLikes,
-} = require("./db/queries/contributions");
+} = require("../db/queries/contributions");
 
 const express = require("express");
 const router = express.Router();

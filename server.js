@@ -32,37 +32,38 @@ app.use(
 app.use(express.static("public"));
 app.use(cookieParser());
 
+const { getStories } = require("./db/queries/stories");
+
 const usersRoutes = require("./routes/users");
 const createRoutes = require("./routes/create");
-const storyRoutes = require("./routes/story");
+const storyRoutes = require("./routes/stories");
+const contributionsRoutes = require("./routes/contributions");
+
+//Route Prefixes
 
 app.use("/users", usersRoutes);
 app.use("/create", createRoutes);
 app.use("/contributions", contributionsRoutes);
 app.use("/stories", storyRoutes);
 
+//Routes
+
 app.get("/", (req, res) => {
   res.render("login");
 });
-
 app.get("/create", createRoutes);
 app.post("/create", createRoutes);
-
 app.get("/contributions/:id", contributionsRoutes);
 app.post("/contributions/:id", contributionsRoutes);
-
+app.get("/stories/:title", storyRoutes);
+app.post("/stories/:id", storyRoutes);
+app.post("/contributions/likes/:id", contributionsRoutes);
+app.post("/contributions/dislikes/:id", contributionsRoutes);
 app.get("/:id", async (req, res) => {
   res.cookie("user_id", req.params.id);
   const stories = await getStories();
-
   res.render("index", { stories: stories.rows });
 });
-
-app.get("/stories/:title", storyRoutes);
-app.post("/stories/:id", storyRoutes);
-
-app.post("/contributions/likes/:id", contributionsRoutes);
-app.post("/contributions/dislikes/:id", contributionsRoutes);
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

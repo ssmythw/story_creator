@@ -1,9 +1,11 @@
 const {
   getContributionByStoryId,
   getUsernameForContribution,
-} = require("./db/queries/contributions");
-const { getStoryByTitleId, updateStories } = require("./db/queries/stories");
-const { getUserStoryByUserIdAndStoryId } = require("./db/queries/user_stories");
+} = require("../db/queries/contributions");
+const { getStoryByTitleId, updateStories } = require("../db/queries/stories");
+const {
+  getUserStoryByUserIdAndStoryId,
+} = require("../db/queries/user_stories");
 
 const express = require("express");
 const router = express.Router();
