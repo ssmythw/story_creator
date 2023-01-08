@@ -59,7 +59,8 @@ app.get("/stories/:title", storyRoutes);
 app.post("/stories/:id", storyRoutes);
 app.post("/contributions/likes/:id", contributionsRoutes);
 app.post("/contributions/dislikes/:id", contributionsRoutes);
-app.get("/:id", async (req, res) => {
+app.get("/users/:id", async (req, res) => {
+  console.log(req.params.id);
   res.cookie("user_id", req.params.id);
   const stories = await getStories();
   res.render("index", { stories: stories.rows });
