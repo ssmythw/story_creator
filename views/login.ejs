@@ -4,12 +4,38 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Jaldi&family=Source+Sans+Pro:wght@300;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" />
+    <link rel="stylesheet" href="/styles/main.css" />
+    <link rel="stylesheet" href="/styles/layout.css" />
+    <link rel="stylesheet" href="/styles/homepage.css" />
+    <link rel="stylesheet" href="/styles/story.css" />
+    <link rel="stylesheet" href="/styles/login.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <title>Document</title>
   </head>
   <body>
-    <ul>
-      <li><a href="/users/1">User 1</a></li>
-      <li><a href="/users/2">User 2</a></li>
-    </ul>
+    <a href="/users/1">User 1</a>
+    <a href="/users/2">User 2</a>
+    <div class="login-container">
+      <span class="logo">Plot</span>
+      <form action="/login" method="POST">
+        <input type="text" name="username" placeholder="username" />
+        <input type="text" name="password" placeholder="password" />
+        <button>Login</button>
+        <p>Not a member?</p>
+        <a href="">Join</a>
+      </form>
+    </div>
   </body>
 </html>
